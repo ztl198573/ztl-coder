@@ -84,3 +84,7 @@
 - 所有公共导出必须有测试
 - 在 `tests/` 中放置测试，镜像 `src/` 结构
 - 使用 Bun 的原生测试运行器（`bun:test`）
+## 参考资料
+- 插件开发参考 https://code.claude.com/docs/zh-CN/plugins，https://code.claude.com/docs/zh-CN/plugins-reference
+- hooks参考 https://code.claude.com/docs/zh-CN/hooks
+- claude code 官方文档 https://code.claude.com/docs/zh-CN/overview
