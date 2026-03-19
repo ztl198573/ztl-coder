@@ -4,26 +4,27 @@ Claude Code 插件，提供结构化的 **Brainstorm → Plan → Implement → 
 
 ## 安装
 
-### 方式 1：使用 claude 命令安装
+### 从 Gitee 安装
 
 ```bash
-# 添加本地 marketplace
-claude plugins marketplace add /home/ztl/DATA/demo/ztl_coder
+# 添加 Gitee marketplace
+claude plugins marketplace add https://gitee.com/ass2in/ztl-coder.git
 
 # 安装插件
 claude plugins install ztl-coder
 ```
 
-### 方式 2：本地配置
+### 本地安装
 
-在 `~/.claude/settings.json` 中添加：
+```bash
+# 克隆仓库
+git clone https://gitee.com/ass2in/ztl-coder.git
 
-```json
-{
-  "enabledPlugins": {
-    "ztl-coder@ztl-coder-marketplace": true
-  }
-}
+# 添加本地 marketplace
+claude plugins marketplace add /path/to/ztl-coder
+
+# 安装插件
+claude plugins install ztl-coder
 ```
 
 ## 验证安装
@@ -157,6 +158,10 @@ Claude: [使用 ztl-coder-ledger-creator skill]
   "compactionThreshold": 0.5
 }
 ```
+
+## 仓库
+
+- **Gitee**: https://gitee.com/ass2in/ztl-coder
 
 ## 许可证
 
