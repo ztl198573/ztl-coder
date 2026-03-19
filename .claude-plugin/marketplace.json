@@ -14,7 +14,7 @@
       "author": {
         "name": "ztl"
       },
-      "source": "https://gitee.com/ass2in/ztl-coder.git",
+      "source": "./plugins/ztl-coder",
       "category": "workflow"
     }
   ]
