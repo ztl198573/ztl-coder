@@ -5,8 +5,8 @@
         "matcher": "startup|resume|clear|compact",
         "hooks": [
           {
-            "type": "prompt",
-            "prompt": "ztl-coder v3.0.0 loaded.\n\n**Available Primary Agents:**\n- ztl-coder-commander - Main orchestrator for complex tasks\n- ztl-coder-brainstormer - Design exploration and refined requirements\n- ztl-coder-octto - Browser-based interactive brainstorming with visual feedback\n\n**Available Subagents:**\n- planner - Create implementation plans\n- executor - Orchestrate implement→review cycles\n- implementer - Execute specific tasks\n- reviewer - Code review\n- codebase-locator - Find file locations\n- codebase-analyzer - Deep module analysis\n- pattern-finder - Find existing patterns\n- project-initializer - Initialize project docs\n- ledger-creator - Create continuity ledgers\n- artifact-searcher - Search past work\n\n**Commands:**\n- /ztl-coder-init - Initialize project with ARCHITECTURE.md and CODE_STYLE.md\n- /ztl-coder-ledger - Create/update continuity ledger\n- /ztl-coder-search - Search past handoffs, plans, available ledgers\n- /ztl-coder-review - Interactive code review with visual annotations\n- /ztl-coder-annotate - Annotate any markdown file\n- /ztl-coder-last - Annotate the last agent message\n\n**MCP Tools:**\n- ztl_code_look_at - View file structure\n- ztl_code_artifact_search - Search artifacts\n- ztl_code_ast_grep_search - AST-based code search\n- ztl_code_ast_grep_replace - AST-based code replacement\n- ztl_code_pty_* - PTY session management\n\n**Workflow:** Brainstorm → Plan (visual review) → Implement → Review (visual annotations)\n\n**Plan Review:** When exiting plan mode, a visual UI opens for inline annotations.\n          "
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/session-start.sh"
           }
         ]
       }
