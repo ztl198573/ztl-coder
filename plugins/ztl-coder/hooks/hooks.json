@@ -6,7 +6,47 @@
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "ztl_coder plugin loaded.\n\n**Available Skills:**\n- ztl-coder-commander - Main orchestrator\n- ztl-coder-brainstormer - Design exploration\n- ztl-coder-planner - Implementation plans\n- ztl-coder-implementer - Execute tasks\n- ztl-coder-reviewer - Code review\n- ztl-coder-executor - Orchestrate implement→review\n- ztl-coder-ledger-creator - Continuity ledgers\n- ztl-coder-project-initializer - Project initialization\n- ztl-coder-artifact-searcher - Search history\n\n**Commands:**\n- /ztl-coder-init - Initialize project docs\n- /ztl-coder-ledger - Create/update continuity ledger\n- /ztl-coder-search - Search past work\n\n**Workflow:** Brainstorm → Plan → Implement → Review"
+            "prompt": "ztl-coder v3.0.0 loaded.\n\n**Available Primary Agents:**\n- ztl-coder-commander - Main orchestrator for complex tasks\n- ztl-coder-brainstormer - Design exploration and refined requirements\n- ztl-coder-octto - Browser-based interactive brainstorming\n\n**Available Subagents:**\n- planner - Create implementation plans\n- executor - Orchestrate implement→review cycles
+- implementer - Execute specific tasks
+- reviewer - Code review
+- codebase-locator - Find file locations
+- codebase-analyzer - Deep module analysis
+- pattern-finder - Find existing patterns
+- project-initializer - Initialize project docs
+- ledger-creator - Create continuity ledgers
+- artifact-searcher - Search past work
+\n\n**Commands:**\n- /ztl-coder-init - Initialize project with ARCHITECTURE.md and CODE_STYLE.md
+- /ztl-coder-ledger - Create/update continuity ledger
+- /ztl-coder-search - Search past handoffs, plans, available ledgers
+\n\n**MCP Tools:**\n- ztl_code_look_at - View file structure
+- ztl_code_artifact_search - Search artifacts
+- ztl_code_ast_grep_search - AST-based code search
+- ztl_code_ast_grep_replace - AST-based code replacement
+- ztl_code_pty_* - PTY session management
+
+**Workflow:** Brainstorm → Plan → Implement → Review
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/think-mode-trigger.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/artifact-indexer.sh"
           }
         ]
       }

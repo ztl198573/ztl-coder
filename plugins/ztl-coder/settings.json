@@ -1,0 +1,42 @@
+{
+  "agents": {
+    "ztl-coder-commander": {
+      "model": "sonnet",
+      "permissionMode": "default"
+    },
+    "ztl-coder-brainstormer": {
+      "model": "sonnet",
+      "temperature": 0.8
+    },
+    "ztl-coder-octto": {
+      "model": "sonnet",
+      "permissionMode": "default"
+    }
+  },
+  "subagents": {
+    "planner": {
+      "model": "inherit",
+      "maxTurns": 20
+    },
+    "executor": {
+      "model": "inherit",
+      "maxTurns": 50
+    },
+    "implementer": {
+      "model": "inherit",
+      "maxTurns": 30
+    },
+    "reviewer": {
+      "model": "inherit",
+      "maxTurns": 15
+    }
+  },
+  "features": {
+    "thinkMode": true,
+    "ledgerAutoLoad": true,
+    "autoCompact": true,
+    "artifactAutoIndex": true
+  },
+  "compactionThreshold": 0.7,
+  "maxParallelSubagents": 10
+}

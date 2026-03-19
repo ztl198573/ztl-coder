@@ -1,10 +1,24 @@
 {
   "name": "ztl-coder",
-  "description": "Claude Code plugin with Brainstorm-Plan-Implement-Review workflow",
-  "version": "1.0.0",
+  "version": "3.0.0",
+  "description": "Claude Code plugin with Brainstorm-Plan-Implement-Review workflow, MCP tools, and intelligent hooks",
   "author": {
     "name": "ztl"
   },
   "license": "MIT",
-  "keywords": ["workflow", "brainstorm", "plan", "implement", "review"]
+  "keywords": [
+    "workflow",
+    "brainstorm",
+    "plan",
+    "implement",
+    "review",
+    "mcp",
+    "hooks",
+    "agents",
+    "pty",
+    "ast"
+  ],
+  "agents": "./agents",
+  "commands": "./commands",
+  "hooks": "./hooks/hooks.json"
 }
