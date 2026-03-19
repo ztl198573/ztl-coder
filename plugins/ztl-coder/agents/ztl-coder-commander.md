@@ -1,5 +1,5 @@
 ---
-name: ztl-coder-commander
+name: commander
 description: |
   Main orchestrator for ztl-coder workflow. Use when you need to coordinate
   complex tasks, delegate to specialists, or manage the brainstorm-plan-implement

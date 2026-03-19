@@ -1,5 +1,5 @@
 ---
-name: ztl-coder-brainstormer
+name: brainstormer
 description: |
   Design exploration agent that transforms rough ideas into complete designs.
   Use when you need to refine requirements, explore approaches, or create

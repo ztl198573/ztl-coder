@@ -1,5 +1,5 @@
 ---
-name: ztl-coder-octto
+name: octto
 description: |
   Browser-based interactive brainstorming agent with visual plan review.
   Uses Plannotator integration for inline annotations on plans and designs.
