@@ -1,71 +1,71 @@
 ---
-description: Initialize project with ARCHITECTURE.md and CODE_STYLE.md
+description: 使用 ARCHITECTURE.md 和 CODE_STYLE.md 初始化项目
 allowed-tools: Glob, Grep, Read, Write, Edit
 ---
 
-## Context
+## 上下文
 
-You are initializing project documentation for this codebase.
+你正在为这个代码库初始化项目文档。
 
-## Your Task
+## 任务
 
-1. Analyze the project structure using Glob and Grep tools
-2. Detect tech stack, frameworks, and patterns
-3. Generate the following files if they don't exist:
-   - **ARCHITECTURE.md** - Project structure and conventions
-   - **CODE_STYLE.md** - Coding standards and patterns
-4. Create `thoughts/` directory structure for session continuity
+1. 使用 Glob 和 Grep 工具分析项目结构
+2. 检测技术栈、框架和模式
+3. 如果不存在，生成以下文件：
+   - **ARCHITECTURE.md** - 项目结构和约定
+   - **CODE_STYLE.md** - 编码标准和模式
+4. 创建 `thoughts/` 目录结构用于会话连续性
 
-## Architecture Template
+## 架构模板
 
 ```markdown
-# {Project Name} Architecture
+# {项目名称} 架构
 
-## Overview
-{Brief description of what this project does}
+## 概述
+{项目用途的简要描述}
 
-## Tech Stack
-- Language: {language}
-- Framework: {framework}
-- Database: {database}
-- Testing: {test framework}
+## 技术栈
+- 语言: {语言}
+- 框架: {框架}
+- 数据库: {数据库}
+- 测试: {测试框架}
 
-## Directory Structure
-{project-root}/
+## 目录结构
+{项目根目录}/
 ├── src/
 ├── tests/
 └── docs/
 
-## Key Components
-- {Component}: {Description}
+## 关键组件
+- {组件}: {描述}
 
-## Configuration
-{Environment variables, config files}
+## 配置
+{环境变量、配置文件}
 ```
 
-## Code Style Template
+## 代码风格模板
 
 ```markdown
-# {Project Name} Code Style
+# {项目名称} 代码风格
 
-## Naming Conventions
-- Files: kebab-case
-- Classes: PascalCase
-- Functions: camelCase
-- Constants: UPPER_SNAKE_CASE
+## 命名约定
+- 文件: kebab-case
+- 类: PascalCase
+- 函数: camelCase
+- 常量: UPPER_SNAKE_CASE
 
-## Code Patterns
-- Error handling: try/catch with specific messages
-- Testing: Write tests first (TDD)
+## 代码模式
+- 错误处理: try/catch 并附带具体消息
+- 测试: 先写测试（TDD）
 
-## Anti-patterns
-- Don't use `any` type
-- Don't skip tests
+## 反模式
+- 不要使用 `any` 类型
+- 不要跳过测试
 ```
 
-## Rules
+## 规则
 
-- Analyze existing code first
-- Match existing patterns
-- Be concise but useful
-- Focus on what's unique to this project
+- 先分析现有代码
+- 匹配现有模式
+- 简洁但有用
+- 专注于项目的独特之处

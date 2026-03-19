@@ -1,65 +1,65 @@
 ---
-description: Create or update continuity ledger for session state
+description: 创建或更新会话状态连续性账本
 allowed-tools: Read, Write, Edit, Glob
 ---
 
-## Context
+## 上下文
 
-You are creating or updating a session continuity ledger to preserve context.
+你正在创建或更新会话连续性账本以保留上下文。
 
-## Output Location
+## 输出位置
 
-`thoughts/ledgers/CONTINUITY_{session-name}.md`
+`thoughts/ledgers/CONTINUITY_{会话名称}.md`
 
-## Ledger Template
+## 账本模板
 
 ```markdown
-# Session Continuity Ledger
-**Session:** {session-name}
-**Updated:** {timestamp}
-**Context Usage:** {percentage}%
+# 会话连续性账本
+**会话:** {会话名称}
+**更新:** {时间戳}
+**上下文使用:** {百分比}%
 
-## Goal
-{The core objective being pursued}
+## 目标
+{正在追求的核心目标}
 
-## Progress
-### Completed
-- [x] {What was done}
+## 进度
+### 已完成
+- [x] {已完成的工作}
 
-### In Progress
-- [ ] {What's currently being worked on}
+### 进行中
+- [ ] {当前正在进行的工作}
 
-### Blocked
-- {Any blockers and why}
+### 阻塞
+- {任何阻塞点及原因}
 
-## Key Decisions
-- **{Decision}**: {Rationale}
+## 关键决策
+- **{决策}**: {理由}
 
-## Technical Context
-### Files Modified
-- {path}: {what changed}
+## 技术上下文
+### 修改的文件
+- {路径}: {更改内容}
 
-### Files Read
-- {path}: {why it was read}
+### 读取的文件
+- {路径}: {读取原因}
 
-## Next Steps
-1. {Immediate next action}
-2. {Following action}
+## 下一步
+1. {立即要做的操作}
+2. {后续操作}
 
-## Notes for Next Session
-{Important context that would help continue work seamlessly}
+## 下次会话备注
+{帮助无缝继续工作的重要上下文}
 ```
 
-## Your Task
+## 任务
 
-1. Review the current conversation and work done
-2. Create or update the ledger file in `thoughts/ledgers/`
-3. Capture all important context, decisions, and progress
-4. List next steps for continuation
+1. 审查当前对话和已完成的工作
+2. 在 `thoughts/ledgers/` 创建或更新账本文件
+3. 捕获所有重要的上下文、决策和进度
+4. 列出延续的下一步
 
-## Rules
+## 规则
 
-- Preserve exact file paths and function names
-- Focus on what's needed to continue
-- Be specific about what was done
-- Include any error messages or issues encountered
+- 保留准确的文件路径和函数名
+- 专注于继续所需的内容
+- 具体说明已完成的工作
+- 包含遇到的任何错误消息或问题

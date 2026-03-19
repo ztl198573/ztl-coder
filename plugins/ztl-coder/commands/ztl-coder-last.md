@@ -1,12 +1,12 @@
 ---
-description: Annotate the last rendered assistant message
+description: 标注最后渲染的助手消息
 allowed-tools: Bash(plannotator:*)
 ---
 
-## Message Annotations
+## 消息标注
 
 !`plannotator annotate-last`
 
-## Your task
+## 任务
 
-Address the annotation feedback above. The user has reviewed your last message and provided specific annotations and comments.
+处理上面的标注反馈。用户已审查了你的最后一条消息并提供了具体的标注和评论。

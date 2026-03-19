@@ -1,12 +1,12 @@
 ---
-description: Open interactive code review for current changes or a PR URL
+description: 对当前更改或 PR URL 打开交互式代码审查
 allowed-tools: Bash(plannotator:*)
 ---
 
-## Code Review Feedback
+## 代码审查反馈
 
 !`plannotator review $ARGUMENTS`
 
-## Your task
+## 任务
 
-If the review above contains feedback or annotations, address them. If no changes were requested, acknowledge and continue.
+如果上面的审查包含反馈或标注，请处理它们。如果没有请求更改，请确认并继续。

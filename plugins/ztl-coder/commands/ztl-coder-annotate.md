@@ -1,12 +1,12 @@
 ---
-description: Open interactive annotation UI for a markdown file
+description: 为 markdown 文件打开交互式标注 UI
 allowed-tools: Bash(plannotator:*)
 ---
 
-## Markdown Annotations
+## Markdown 标注
 
 !`plannotator annotate $ARGUMENTS`
 
-## Your task
+## 任务
 
-Address the annotation feedback above. The user has reviewed the markdown file and provided specific annotations and comments.
+处理上面的标注反馈。用户已审查了 markdown 文件并提供了具体的标注和评论。

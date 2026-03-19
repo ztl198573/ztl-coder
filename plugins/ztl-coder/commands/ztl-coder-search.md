@@ -1,46 +1,46 @@
 ---
-description: Search past plans, ledgers, and designs for relevant context
+description: 搜索历史计划、账本和设计以获取相关上下文
 allowed-tools: Glob, Grep, Read
 ---
 
-## Search Locations
+## 搜索位置
 
-- `thoughts/ledgers/` - Session continuity ledgers
-- `thoughts/shared/plans/` - Implementation plans
-- `thoughts/shared/designs/` - Design documents
+- `thoughts/ledgers/` - 会话连续性账本
+- `thoughts/shared/plans/` - 实现计划
+- `thoughts/shared/designs/` - 设计文档
 
-## Output Format
+## 输出格式
 
 ```markdown
-# Search Results: {query}
+# 搜索结果: {查询}
 
-## Matches Found
-### {file-name}
-- Path: {full-path}
-- Relevance: high/medium/low
-- Date: {last-modified}
-- Summary: {Brief summary of relevant content}
+## 找到的匹配
+### {文件名}
+- 路径: {完整路径}
+- 相关性: 高/中/低
+- 日期: {最后修改}
+- 摘要: {相关内容的简要摘要}
 
-## Related Context
-{Additional relevant information discovered}
+## 相关上下文
+{发现的其他相关信息}
 ```
 
-## Your Task
+## 任务
 
-1. Parse the search query from $ARGUMENTS
-2. Search all artifact directories using Glob and Grep
-3. Rank results by relevance
-4. Return summaries with paths
+1. 从 $ARGUMENTS 解析搜索查询
+2. 使用 Glob 和 Grep 搜索所有工件目录
+3. 按相关性排序结果
+4. 返回带路径的摘要
 
-## Relevance Scoring
+## 相关性评分
 
-- **High**: Query appears in title or 5+ times
-- **Medium**: Query appears 2-5 times
-- **Low**: Query appears 1-2 times
+- **高**: 查询出现在标题中或 5 次以上
+- **中**: 查询出现 2-5 次
+- **低**: 查询出现 1-2 次
 
-## Rules
+## 规则
 
-- Search all artifact directories
-- Rank results by relevance then date
-- Provide summaries, not full content
-- Note date of each artifact
+- 搜索所有工件目录
+- 按相关性然后按日期排序
+- 提供摘要而非完整内容
+- 注明每个工件的日期
