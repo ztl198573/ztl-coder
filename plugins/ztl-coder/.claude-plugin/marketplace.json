@@ -1,0 +1,21 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "ztl-coder-marketplace",
+  "description": "Marketplace for ztl_coder Claude Code plugin",
+  "owner": {
+    "name": "ztl",
+    "email": "ass2in@gitee.com"
+  },
+  "plugins": [
+    {
+      "name": "ztl-coder",
+      "description": "Claude Code plugin with Brainstorm-Plan-Implement-Review workflow",
+      "version": "1.0.0",
+      "author": {
+        "name": "ztl"
+      },
+      "source": "https://gitee.com/ass2in/ztl-coder.git",
+      "category": "workflow"
+    }
+  ]
+}
