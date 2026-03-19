@@ -69,10 +69,11 @@ export async function executeAstGrepReplace(
     args.push(".");
   }
 
-  log.info("ast-grep-replace", `执行替换: ${args.join(" ")}`);
+  const cmdArgs = [...getAstGrepCommand(), ...args];
+  log.info("ast-grep-replace", `执行替换: ${cmdArgs.join(" ")}`);
 
   return new Promise((resolve) => {
-    const proc = spawn("sg", args, {
+    const proc = spawn(cmdArgs[0], cmdArgs.slice(1), {
       cwd: path || process.cwd(),
       shell: true
     });
@@ -106,10 +107,12 @@ export async function executeAstGrepReplace(
   });
 }
 
-/** 检查 ast-grep 是否可用 */
+/** 检查 ast-grep 是否可用 (使用 npx) */
 async function checkAstGrepAvailable(): Promise<boolean> {
   return new Promise((resolve) => {
-    const proc = spawn("sg", ["--version"], { shell: true });
+    const proc = spawn("npx", ["-y", "@anthropics/ast-grep-cli@latest", "--version"], {
+      shell: true,
+    });
     proc.on("close", (code) => {
       resolve(code === 0);
     });
@@ -117,6 +120,11 @@ async function checkAstGrepAvailable(): Promise<boolean> {
       resolve(false);
     });
   });
+}
+
+/** 获取 ast-grep 命令前缀 */
+function getAstGrepCommand(): string[] {
+  return ["npx", "-y", "@anthropics/ast-grep-cli@latest"];
 }
 
 /** 格式化预览结果 */

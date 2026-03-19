@@ -61,10 +61,11 @@ export async function executeAstGrepSearch(
     args.push(".");
   }
 
-  log.info("ast-grep-search", `执行搜索: ${args.join(" ")}`);
+  const cmdArgs = [...getAstGrepCommand(), ...args];
+  log.info("ast-grep-search", `执行搜索: ${cmdArgs.join(" ")}`);
 
   return new Promise((resolve) => {
-    const proc = spawn("sg", args, {
+    const proc = spawn(cmdArgs[0], cmdArgs.slice(1), {
       cwd: path || process.cwd(),
       shell: true,
     });
@@ -94,10 +95,13 @@ export async function executeAstGrepSearch(
   });
 }
 
-/** 检查 ast-grep 是否可用 */
+/** 检查 ast-grep 是否可用 (使用 npx) */
 async function checkAstGrepAvailable(): Promise<boolean> {
   return new Promise((resolve) => {
-    const proc = spawn("sg", ["--version"], { shell: true });
+    // 优先使用全局安装的 sg，否则使用 npx
+    const proc = spawn("npx", ["-y", "@anthropics/ast-grep-cli@latest", "--version"], {
+      shell: true,
+    });
     proc.on("close", (code) => {
       resolve(code === 0);
     });
@@ -105,6 +109,11 @@ async function checkAstGrepAvailable(): Promise<boolean> {
       resolve(false);
     });
   });
+}
+
+/** 获取 ast-grep 命令前缀 */
+function getAstGrepCommand(): string[] {
+  // 返回 npx 命令数组，  return ["npx", "-y", "@anthropics/ast-grep-cli@latest"];
 }
 
 /** 格式化搜索结果 */

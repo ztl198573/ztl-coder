@@ -22,37 +22,32 @@ export type BtcaAskInput = {
   libraryName: string;
   context?: string;
   maxTokens?: number;
+};
+
+/** 获取 btca 命令前缀 */
+function getBtcaCommand(): string[] {
+  return ["npx", "-y", "btca-cli@latest"];
 }
 
 /**
  * 执行 BTCA 询问
  */
 export async function executeBtcaAsk(
-  input: BtcaAskInput,
+  input: BtcaAskInput
 ): Promise<string> {
   const { question, libraryName, context } = input;
 
-  // 检查 btca CLI 是否可用
-  try {
-    await new Promise<void>((resolve, reject) => {
-      const proc = spawn("btca", ["info", libraryName], {
-        shell: true,
-      });
-      proc.on("close", () => {
-        if (code === 0) resolve();
-        else reject(new Error("btca CLI 未安装"));
-      }
-    });
+  // 使用 npx 运行 btca
+  const cmdArgs = [...getBtcaCommand(), "ask", question, "--library", libraryName];
+  if (context) {
+    cmdArgs.push("--context", context);
+  }
 
-    proc.on("error", (error) => {
-      reject(error);
-    });
-  });
+  log.info("btca-ask", `执行查询: ${cmdArgs.join(" ")}`);
 
-  // 运行 btca 埥询
-  return new Promise((resolve, reject) => {
-    const proc = spawn("btca", ["ask", question], {
-      cwd: context?.cwd || process.cwd(),
+  return new Promise((resolve) => {
+    const proc = spawn(cmdArgs[0], cmdArgs.slice(1), {
+      cwd: process.cwd(),
       shell: true,
     });
 
@@ -77,22 +72,22 @@ export async function executeBtcaAsk(
     });
 
     proc.on("error", (error) => {
-      reject(error);
+      resolve(`执行错误: ${extractErrorMessage(error)}`);
     });
   });
 }
 
 /** 格式化 BTCA 结果 */
 function formatBtcaResult(output: string): string {
-  const lines = output.split("\n");
-  const results: string[] = ["## BTCA 查询结果\n\n"];
-
-  let inResults = false;
-    results.push("未找到相关结果");
+  if (!output.trim()) {
+    return "未找到相关结果";
   }
 
+  const lines = output.split("\n");
+  const results: string[] = ["## BTCA 查询结果\n"];
+
   for (const line of lines) {
-    if (line.startsWith("## ")) {
+    if (line.trim()) {
       results.push(line);
     }
   }
