@@ -1,7 +1,10 @@
 {
   "name": "ztl-coder",
-  "version": "1.0.0",
-  "description": "Claude Code plugin with Brainstorm-Plan-Implement-Review workflow",
+  "version": "2.0.0",
+  "description": "Claude Code plugin with Brainstorm-Plan-Implement-Review workflow and MCP tools",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "keywords": [
     "claude-code",
     "plugin",
@@ -9,8 +12,25 @@
     "brainstorm",
     "plan",
     "implement",
-    "review"
+    "review",
+    "mcp"
   ],
   "author": "ztl",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "build": "bun build src/index.ts --outdir dist --target node",
+    "build:watch": "bun build src/index.ts --outdir dist --target node --watch",
+    "dev": "bun run --watch src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.1.0",
+    "@types/node": "^20.11.0",
+    "typescript": "^5.4.0"
+  }
 }
