@@ -1,6 +1,6 @@
 {
-  "name": "ztl_coder",
-  "description": "Claude Code plugin with Brainstorm-Research-Plan-Implement workflow",
+  "name": "ztl-coder",
+  "description": "Claude Code plugin with Brainstorm-Plan-Implement-Review workflow",
   "version": "1.0.0",
   "author": {
     "name": "ztl"
