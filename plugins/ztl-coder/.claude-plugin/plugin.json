@@ -21,7 +21,6 @@
     "visual-review",
     "annotations"
   ],
-  "agents": "./agents",
   "commands": "./commands",
   "hooks": "./hooks/hooks.json"
 }
