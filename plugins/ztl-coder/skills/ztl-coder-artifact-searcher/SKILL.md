@@ -1,10 +1,10 @@
 ---
 name: ztl-coder-artifact-searcher
-description: Searches past plans, ledgers, and designs. Use when /ztl-coder-search is invoked or you need historical context.
+description: Searches past plans, ledgers, and designs. Use when you need historical context from previous work.
 metadata:
   priority: 3
-  bashPatterns:
-    - '\b/ztl-coder-search\b'
+  pathPatterns:
+    - 'thoughts/**/*.md'
 ---
 
 <identity>
@@ -34,25 +34,12 @@ Search through past plans, ledgers, and designs to find relevant context.
 - Path: {full-path}
 - Relevance: high/medium/low
 - Date: {last-modified}
-- Summary: {Brief summary of relevant content}
-
-### {file-name-2}
-...
-
-## Related Context
-{Additional relevant information discovered}
+- Summary: {Brief summary}
 ```
 </output-format>
-
-<relevance-scoring>
-- **High**: Query appears in title or 5+ times
-- **Medium**: Query appears 2-5 times
-- **Low**: Query appears 1-2 times
-</relevance-scoring>
 
 <rules>
 - Search all artifact directories
 - Rank results by relevance then date
 - Provide summaries, not full content
-- Note date of each artifact
 </rules>
