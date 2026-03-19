@@ -1,6 +1,6 @@
 {
   "name": "ztl-coder",
-  "version": "3.1.0",
+  "version": "3.1.2",
   "description": "Claude Code plugin with Brainstorm-Plan-Implement-Review workflow, MCP tools, intelligent hooks, and Plannotator visual plan review integration",
   "author": {
     "name": "ztl"
@@ -21,6 +21,5 @@
     "visual-review",
     "annotations"
   ],
-  "commands": "./commands",
-  "hooks": "./hooks/hooks.json"
+  "commands": "./commands"
 }
