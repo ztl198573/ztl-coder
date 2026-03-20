@@ -79,6 +79,8 @@ export function createIncrementalPlanManager(
         changeNote: "初始计划创建",
       };
 
+      const completedCount = planItems.filter((i) => i.status === "completed").length;
+
       const metadata: PlanMetadata = {
         id: `plan_${Date.now()}`,
         name,
@@ -87,8 +89,8 @@ export function createIncrementalPlanManager(
         createdAt: now,
         updatedAt: now,
         totalItems: planItems.length,
-        completedItems: 0,
-        progress: 0,
+        completedItems: completedCount,
+        progress: planItems.length > 0 ? Math.round((completedCount / planItems.length) * 100) : 0,
       };
 
       plan = {

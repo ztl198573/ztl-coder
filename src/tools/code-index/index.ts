@@ -116,10 +116,13 @@ function matchesPattern(path: string, patterns: string[]): boolean {
  */
 async function indexFile(
   filePath: string,
+  rootPath: string,
   config: IndexConfig,
 ): Promise<FileIndex | null> {
   try {
-    const file = Bun.file(filePath);
+    // 组合完整路径
+    const fullPath = filePath.startsWith("/") ? filePath : `${rootPath}/${filePath}`;
+    const file = Bun.file(fullPath);
     const stat = await file.stat();
 
     if (!stat || stat.size > config.maxFileSize) {
@@ -233,7 +236,7 @@ export function createIndexer(config: Partial<IndexConfig> = {}) {
       for (let i = 0; i < files.length; i += batchSize) {
         const batch = files.slice(i, i + batchSize);
         const results = await Promise.all(
-          batch.map((f) => indexFile(f, cfg)),
+          batch.map((f) => indexFile(f, projectIndex.rootPath, cfg)),
         );
 
         for (const result of results) {
