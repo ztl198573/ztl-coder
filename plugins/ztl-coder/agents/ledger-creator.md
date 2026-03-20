@@ -1,4 +1,5 @@
 ---
+internal: true
 name: ledger-creator
 description: |
   创建和更新会话连续性账本。

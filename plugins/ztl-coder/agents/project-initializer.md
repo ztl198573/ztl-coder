@@ -1,4 +1,5 @@
 ---
+internal: true
 name: project-initializer
 description: |
   初始化项目文档和结构。

@@ -1,4 +1,5 @@
 ---
+internal: true
 name: reviewer
 description: |
   审查代码实现的正确性、完整性、风格和安全性。

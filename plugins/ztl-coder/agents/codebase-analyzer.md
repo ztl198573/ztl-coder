@@ -1,4 +1,5 @@
 ---
+internal: true
 name: codebase-analyzer
 description: |
   对代码库模块进行深度分析。用于理解架构、依赖关系或特定区域的模式。

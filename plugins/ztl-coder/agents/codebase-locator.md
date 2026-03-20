@@ -1,4 +1,5 @@
 ---
+internal: true
 name: codebase-locator
 description: |
   在代码库中查找文件位置。用于按名称或模式定位特定文件、模块或组件。

@@ -1,4 +1,5 @@
 ---
+internal: true
 name: artifact-searcher
 description: |
   搜索历史工件：账本、计划、设计。

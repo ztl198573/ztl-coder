@@ -1,4 +1,5 @@
 ---
+internal: true
 name: executor
 description: |
   执行编排器，管理实现→审查循环。

@@ -1,4 +1,5 @@
 ---
+internal: true
 name: pattern-finder
 description: |
   在代码库中查找现有模式。用于实现新代码时需要遵循现有约定。

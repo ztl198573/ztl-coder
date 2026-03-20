@@ -1,4 +1,5 @@
 ---
+internal: true
 name: planner
 description: |
   从设计创建详细实现计划。用于设计已存在且需要分解为可执行任务时。

@@ -1,4 +1,5 @@
 ---
+internal: true
 name: implementer
 description: |
   执行具体实现任务。遵循 TDD 方法：
