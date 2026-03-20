@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "ztl-coder",
-      "description": "Claude Code plugin with Brainstorm-Plan-Implement-Review workflow",
+      "description": "Claude Code plugin with Brainstorm-Plan-Implement-Review workflow, incremental plans, and PTY manager",
       "version": "4.3.0",
       "author": {
         "name": "ztl"
