@@ -1,7 +1,7 @@
 {
   "name": "ztl-coder",
-  "version": "4.3.0",
-  "description": "Claude Code plugin with Brainstorm-Plan-Implement-Review workflow, MCP tools, intelligent hooks, Plannotator integration, incremental plans, and PTY manager",
+  "version": "4.4.0",
+  "description": "Claude Code plugin with workflow automation, enhanced UX, structured logging, and interactive wizards",
   "author": {
     "name": "ztl"
   },
