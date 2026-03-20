@@ -355,5 +355,7 @@ export async function parallelExecute<T, R>(
 ): Promise<Map<string, TaskResult<R>>> {
   const executor = createParallelExecutor(options);
   executor.addTasks(taskList);
-  return executor.executeAll();
+  const results = await executor.executeAll();
+  // Cast is safe because we added typed tasks
+  return results as Map<string, TaskResult<R>>;
 }

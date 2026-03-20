@@ -4,7 +4,7 @@
  * 提供预定义的工作流模板，支持快速启动常见开发任务
  */
 
-export { WorkflowTemplate, TemplateStep, TemplateContext } from "./types.ts";
+export type { WorkflowTemplate, TemplateStep, TemplateContext } from "./types.ts";
 export { loadTemplate, listTemplates, getTemplate } from "./loader.ts";
 export { applyTemplate, validateTemplate } from "./executor.ts";
 

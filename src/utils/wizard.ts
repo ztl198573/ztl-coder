@@ -5,6 +5,7 @@
  */
 
 import * as readline from "node:readline/promises";
+import type { Interface as ReadlineInterface } from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
 import { OutputFormatter, createFormatter } from "./output.ts";
 
@@ -54,7 +55,8 @@ export interface WizardConfig {
   /** 向导描述 */
   description?: string;
   /** 步骤列表 */
-  steps: WizardStep[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  steps: Array<WizardStep<any>>;
   /** 是否显示进度 */
   showProgress?: boolean;
   /** 是否允许返回上一步 */
@@ -79,7 +81,7 @@ export class InteractiveWizard {
   private formatter: OutputFormatter;
   private answers: Record<string, unknown> = {};
   private currentStep: number = 0;
-  private rl: readline.ReadLineInterface | null = null;
+  private rl: ReadlineInterface | null = null;
 
   constructor(config: WizardConfig) {
     this.config = config;
@@ -159,7 +161,7 @@ export class InteractiveWizard {
     console.log("");
   }
 
-  private async executeStep(step: WizardStep): Promise<{ value: unknown; cancelled: boolean }> {
+  private async executeStep(step: WizardStep<unknown>): Promise<{ value: unknown; cancelled: boolean }> {
     // 显示步骤标题
     console.log(this.formatter.bold(step.title));
     if (step.description) {
@@ -169,15 +171,15 @@ export class InteractiveWizard {
 
     switch (step.type) {
       case "text":
-        return this.executeTextStep(step);
+        return this.executeTextStep(step as WizardStep<string>);
       case "select":
-        return this.executeSelectStep(step);
+        return this.executeSelectStep(step as WizardStep<string>);
       case "multiselect":
-        return this.executeMultiselectStep(step);
+        return this.executeMultiselectStep(step as WizardStep<string[]>);
       case "confirm":
-        return this.executeConfirmStep(step);
+        return this.executeConfirmStep(step as WizardStep<boolean>);
       case "number":
-        return this.executeNumberStep(step);
+        return this.executeNumberStep(step as WizardStep<number>);
       default:
         return { value: step.default, cancelled: false };
     }
@@ -279,11 +281,11 @@ export class InteractiveWizard {
       }
 
       // 解析选择
-      const indices = answer.split(",").map((s) => parseInt(s.trim(), 10) - 1);
-      const validIndices = indices.filter((i) => i >= 0 && i < options.length && !options[i].disabled);
+      const indices = answer.split(",").map((s: string) => parseInt(s.trim(), 10) - 1);
+      const validIndices = indices.filter((i: number) => i >= 0 && i < options.length && !options[i].disabled);
 
       if (validIndices.length > 0) {
-        const values = validIndices.map((i) => options[i].value);
+        const values = validIndices.map((i: number) => options[i].value);
         return { value: values, cancelled: false };
       }
 
@@ -384,16 +386,23 @@ export async function promptText(
     validate?: (value: string) => string | true;
   },
 ): Promise<string | null> {
+  const step: WizardStep = {
+    id: "value",
+    title,
+    type: "text",
+  };
+  if (options?.default !== undefined) step.default = options.default;
+  if (options?.required !== undefined) step.required = options.required;
+  if (options?.placeholder !== undefined) step.placeholder = options.placeholder;
+  if (options?.validate) {
+    // Wrap the validate function to accept unknown
+    const originalValidate = options.validate;
+    step.validate = (value: unknown) => originalValidate(value as string);
+  }
+
   const wizard = new InteractiveWizard({
     title: "输入",
-    steps: [
-      {
-        id: "value",
-        title,
-        type: "text",
-        ...options,
-      },
-    ],
+    steps: [step],
   });
 
   const result = await wizard.run();
@@ -474,16 +483,22 @@ export async function promptNumber(
     validate?: (value: number) => string | true;
   },
 ): Promise<number | null> {
+  const step: WizardStep = {
+    id: "value",
+    title,
+    type: "number",
+  };
+  if (options?.default !== undefined) step.default = options.default;
+  if (options?.required !== undefined) step.required = options.required;
+  if (options?.placeholder !== undefined) step.placeholder = options.placeholder;
+  if (options?.validate) {
+    const originalValidate = options.validate;
+    step.validate = (value: unknown) => originalValidate(value as number);
+  }
+
   const wizard = new InteractiveWizard({
     title: "输入数字",
-    steps: [
-      {
-        id: "value",
-        title,
-        type: "number",
-        ...options,
-      },
-    ],
+    steps: [step],
   });
 
   const result = await wizard.run();

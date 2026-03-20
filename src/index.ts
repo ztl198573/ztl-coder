@@ -28,7 +28,7 @@ server.tool(
   "提取文件结构，节省上下文。用于大型文件或获取文件概览。",
   lookAtSchema,
   async (args) => {
-    log.info("look_at", `查看文件: ${args.filePath}`);
+    log.info(`查看文件: ${args.filePath}`, { operation: "look_at" });
     const result = await executeLookAt(args);
     return {
       content: [{ type: "text", text: result }],
@@ -42,7 +42,7 @@ server.tool(
   "搜索历史账本、计划和设计文档。用于查找过去的工件。",
   artifactSearchSchema,
   async (args) => {
-    log.info("artifact_search", `搜索: ${args.query}, 类型: ${args.type || "all"}`);
+    log.info(`搜索: ${args.query}, 类型: ${args.type || "all"}`, { operation: "artifact_search" });
     const result = await executeArtifactSearch(args);
     return {
       content: [{ type: "text", text: result }],
@@ -56,7 +56,7 @@ server.tool(
   "加载最新的会话账本。用于恢复会话上下文。",
   loadLedgerSchema,
   async () => {
-    log.info("load_ledger", "加载会话账本");
+    log.info("加载会话账本", { operation: "load_ledger" });
     const result = await executeLoadLedger({});
     return {
       content: [{ type: "text", text: result }],
@@ -68,10 +68,11 @@ server.tool(
 async function main(): Promise<void> {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  log.info("mcp-server", `${PLUGIN_META.name} v${PLUGIN_META.version} 已启动`);
+  log.info(`${PLUGIN_META.name} v${PLUGIN_META.version} 已启动`, { module: "mcp-server" });
 }
 
 main().catch((error) => {
-  log.error("mcp-server", "启动失败", error);
+  const err = error instanceof Error ? error : new Error(String(error));
+  log.error("启动失败", { module: "mcp-server", error: err });
   process.exit(1);
 });

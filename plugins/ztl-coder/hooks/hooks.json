@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "plannotator",
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/plannotator-hook.sh",
             "timeout": 345600
           }
         ]

@@ -87,7 +87,7 @@ export class OutputFormatter {
   }
 
   /** 应用多个样式 */
-  style(text: string, ...styles: ColorName[]): string {
+  applyStyle(text: string, ...styles: ColorName[]): string {
     if (!this.style.color) return text;
     const codes = styles.map((s) => ANSI[s]).join("");
     return `${codes}${text}${ANSI.reset}`;
@@ -95,22 +95,22 @@ export class OutputFormatter {
 
   /** 加粗 */
   bold(text: string): string {
-    return this.style(text, "bold");
+    return this.applyStyle(text, "bold");
   }
 
   /** 变暗 */
   dim(text: string): string {
-    return this.style(text, "dim");
+    return this.applyStyle(text, "dim");
   }
 
   /** 斜体 */
   italic(text: string): string {
-    return this.style(text, "italic");
+    return this.applyStyle(text, "italic");
   }
 
   /** 下划线 */
   underline(text: string): string {
-    return this.style(text, "underline");
+    return this.applyStyle(text, "underline");
   }
 
   // 语义化颜色方法
@@ -174,6 +174,15 @@ export class OutputFormatter {
       second: "2-digit",
     });
     return this.dim(`[${str}] `);
+  }
+
+  /** 居中文本 */
+  center(text: string, width: number = this.style.maxWidth): string {
+    if (text.length >= width) return text;
+    const totalPadding = width - text.length;
+    const leftPadding = Math.floor(totalPadding / 2);
+    const rightPadding = totalPadding - leftPadding;
+    return " ".repeat(leftPadding) + text + " ".repeat(rightPadding);
   }
 
   // 结构化输出

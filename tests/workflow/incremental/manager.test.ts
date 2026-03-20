@@ -253,7 +253,7 @@ describe("增量计划管理器", () => {
     });
 
     test("应检查依赖关系", () => {
-      const items = [
+      const items: Array<{ title: string; status: "pending"; priority: number }> = [
         { title: "任务 A", status: "pending", priority: 2 },
         { title: "任务 B", status: "pending", priority: 1 },
       ];

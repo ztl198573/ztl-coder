@@ -161,7 +161,7 @@ export class StructuredLogger {
       case "error":
         return color ? output.error(icons ? "✗ ERROR" : "ERROR") : "ERROR";
       case "fatal":
-        return color ? output.style(icons ? "☠ FATAL" : "FATAL", "bold", "bgRed") : "FATAL";
+        return color ? output.applyStyle(icons ? "☠ FATAL" : "FATAL", "bold", "bgRed") : "FATAL";
       default:
         return level.toUpperCase();
     }

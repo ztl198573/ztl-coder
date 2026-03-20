@@ -258,7 +258,7 @@ export function createPtyManager(config: Partial<PtyManagerConfig> = {}) {
     },
 
     /** 向会话写入数据 */
-    write(sessionId: string, data: string): PtyWriteResult {
+    async write(sessionId: string, data: string): Promise<PtyWriteResult> {
       const proc = processes.get(sessionId);
       const session = sessions.get(sessionId);
 
@@ -277,8 +277,9 @@ export function createPtyManager(config: Partial<PtyManagerConfig> = {}) {
       }
 
       try {
-        const writer = proc.stdin?.getWriter();
-        if (!writer) {
+        // Handle stdin - might be a file descriptor, FileSink, or WritableStream
+        const stdin = proc.stdin;
+        if (!stdin) {
           return {
             success: false,
             error: "无法获取标准输入流",
@@ -286,14 +287,35 @@ export function createPtyManager(config: Partial<PtyManagerConfig> = {}) {
         }
 
         const encoded = new TextEncoder().encode(data);
-        writer.write(encoded);
-        writer.releaseLock();
 
-        session.lastActivityAt = new Date();
+        // Check if it's a FileSink (Bun's file sink)
+        if (typeof stdin === "object" && "write" in stdin) {
+          // FileSink has a write method - use type assertion through unknown for Bun's FileSink
+          const sink = stdin as unknown as { write: (data: Uint8Array) => number | null; flush: () => Promise<void> | number };
+          const bytesWritten = sink.write(encoded);
+          await sink.flush();
+          session.lastActivityAt = new Date();
+          return {
+            success: true,
+            bytesWritten: bytesWritten ?? encoded.length,
+          };
+        }
+
+        // Check if it's a WritableStream with getWriter
+        if (typeof stdin === "object" && "getWriter" in stdin) {
+          const writer = (stdin as WritableStream<Uint8Array>).getWriter();
+          await writer.write(encoded);
+          writer.releaseLock();
+          session.lastActivityAt = new Date();
+          return {
+            success: true,
+            bytesWritten: encoded.length,
+          };
+        }
 
         return {
-          success: true,
-          bytesWritten: encoded.length,
+          success: false,
+          error: "标准输入流类型不支持写入",
         };
       } catch (err) {
         return {

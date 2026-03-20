@@ -1,6 +1,6 @@
 # ztl_coder
 
-Claude Code 插件，提供结构化的 **Brainstorm → Plan → Implement → Review** 工作流，集成 **Plannotator** 可视化计划审查功能。
+Claude Code 插件。提供结构化的 **Brainstorm → Plan → Implement → Review** 工作流，集成 **Plannotator** 可视化计划审查功能。
 
 ## 安装
 
@@ -54,152 +54,85 @@ claude plugins list
 > /ztl-coder-init
 ```
 
-## 可用技能
+## 快速启动命令
 
-| 技能 | 描述 |
+| 命令 | 描述 |
 |------|------|
-| `ztl-coder-commander` | 主编排器，协调复杂任务 |
-| `ztl-coder-brainstormer` | 设计探索，细化需求 |
-| `ztl-coder-octto` | 浏览器交互式头脑风暴，集成可视化反馈 |
-| `ztl-coder-planner` | 创建实现计划 |
-| `ztl-coder-implementer` | 执行任务 |
-| `ztl-coder-reviewer` | 代码审查 |
-| `ztl-coder-executor` | 编排 implement→review 循环 |
-| `ztl-coder-ledger-creator` | 创建会话连续性账本 |
-| `ztl-coder-project-initializer` | 初始化项目文档 |
-| `ztl-coder-artifact-searcher` | 搜索历史工件 |
+| `/ztl-coder-octto` | 启动交互式头脑风暴，支持可视化反馈 |
+| `/ztl-coder-brainstormer` | 启动设计探索会话 |
+| `/ztl-coder-commander` | 启动主编排器，协调复杂任务 |
+
+## 可用的主代理
+
+| 代理 | 描述 |
+|------|------|
+| `ztl-coder:commander` | 主编排器，协调复杂任务和工作流 |
+| `ztl-coder:brainstormer` | 设计探索和需求细化 |
+| `ztl-coder:octto` | 基于浏览器的交互式头脑风暴，集成可视化反馈 |
+
+## 可用的子代理
+
+| 代理 | 描述 |
+|------|------|
+| `planner` | 创建实现计划 |
+| `executor` | 编排 implement→review 循环 |
+| `implementer` | 执行具体任务（TDD 模式） |
+| `reviewer` | 代码审查 |
+| `e2e-tester` | E2E 前端自动化测试 |
+| `doc-manager` | 文档管理（同步、归档、清理、验证） |
+| `codebase-locator` | 查找文件位置 |
+| `codebase-analyzer` | 深度模块分析 |
+| `pattern-finder` | 查找现有模式 |
+| `project-initializer` | 初始化项目文档 |
+| `ledger-creator` | 创建连续性账本 |
+| `artifact-searcher` | 搜索历史工作 |
 
 ## 命令
 
 | 命令 | 描述 |
 |------|------|
-| `/ztl-coder-init` | 生成 ARCHITECTURE.md 和 CODE_STYLE.md |
-| `/ztl-coder-ledger` | 创建/更新会话连续性账本 |
-| `/ztl-coder-search` | 搜索过去的计划、设计和账本 |
-| `/ztl-coder-review` | 可视化代码审查（git diff 或 GitHub PR） |
-| `/ztl-coder-annotate` | 可视化标注任何 Markdown 文件 |
-| `/ztl-coder-last` | 标注最后一条助手消息 |
+| `/ztl-coder-init` | 初始化项目，生成 ARCHITECTURE.md 和 CODE_STYLE.md |
+| `/ztl-coder-ledger` | 创建/更新连续性账本 |
+| `/ztl-coder-search` | 搜索历史交接、计划、可用账本 |
+| `/ztl-coder-review` | 交互式代码审查，支持可视化标注 |
+| `/ztl-coder-annotate` | 标注任意 markdown 文件 |
+| `/ztl-coder-last` | 标注最后一条代理消息 |
+| `/ztl-coder-doc` | 管理项目文档（同步、归档、清理、验证） |
 
-## Plannotator 可视化审查
+## MCP 工具
 
-### 功能特性
-
-| 功能 | 触发方式 | 描述 |
-|------|----------|------|
-| **计划审查** | ExitPlanMode Hook | 计划完成时自动打开可视化 UI |
-| **代码审查** | `/ztl-coder-review` | 审查 git diff 或 GitHub PR |
-| **文件标注** | `/ztl-coder-annotate` | 标注任何 Markdown 文件 |
-| **消息标注** | `/ztl-coder-last` | 标注最后一条助手消息 |
-| **计划差异** | 自动 | 查看计划修订时的变更 |
-
-### 工作原理
-
-1. 当 Agent 完成计划时，自动打开 Plannotator UI
-2. 用户可以进行行内标注（删除、插入、替换、评论）
-3. **批准** → Agent 继续执行实现
-4. **请求修改** → 标注转换为结构化反馈，Agent 修订计划
-
-### 团队协作
-
-- **小型计划**：完全编码在 URL 中，无需服务器
-- **大型计划**：使用端到端加密的短链接服务
-  - AES-256-GCM 加密
-  - 服务器只存储密文
-  - 解密密钥仅存在于分享的 URL 中
-  - 自动删除：7 天后过期
+| 工具 | 描述 |
+|------|------|
+| `ztl_code_look_at` | 查看文件结构 |
+| `ztl_code_artifact_search` | 搜索工件 |
+| `ztl_code_ast_grep_search` | AST 代码搜索 |
+| `ztl_code_ast_grep_replace` | AST 代码替换 |
+| `ztl_code_pty_spawn` | 创建 PTY 会话 |
+| `ztl_code_pty_write` | 写入 PTY 会话 |
+| `ztl_code_pty_read` | 读取 PTY 输出 |
+| `ztl_code_pty_list` | 列出所有 PTY 会话 |
+| `ztl_code_pty_kill` | 终止 PTY 会话 |
 
 ## 工作流
 
 ```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│ Brainstorm  │ ──► │    Plan     │ ──► │  Implement  │ ──► │   Review    │
-│             │     │             │     │             │     │             │
-│ 细化需求    │     │ 创建计划    │     │ 执行任务    │     │ 验证代码    │
-│ 探索设计    │     │ 分解任务    │     │ 编写代码    │     │ 检查质量    │
-│             │     │             │     │             │     │             │
-│             │     │ ▼ 可视化    │     │             │     │ ▼ 可视化    │
-│             │     │   审查      │     │             │     │   标注      │
-└─────────────┘     └─────────────┘     └─────────────┘     └─────────────┘
-       │                   │                   │                   │
-       ▼                   ▼                   ▼                   ▼
-  designs/            plans/              worktree            approved
-  YYYY-MM-DD          YYYY-MM-DD          isolated            or fixed
+头脑风暴 → 计划(可视化审查) → 实现(TDD) → 审查(可视化标注) → E2E测试 → 文档更新
 ```
 
-## 目录结构
+### 计划审查
 
-```
-ztl_coder/
-├── .claude-plugin/
-│   ├── skills/                         # Claude Code Skills
-│   │   ├── ztl-coder-commander/SKILL.md     # 主编排器
-│   │   ├── ztl-coder-brainstormer/SKILL.md  # 设计探索
-│   │   ├── ztl-coder-octto/SKILL.md         # 交互式头脑风暴
-│   │   ├── ztl-coder-planner/SKILL.md       # 实现计划
-│   │   ├── ztl-coder-implementer/SKILL.md   # 任务执行
-│   │   ├── ztl-coder-reviewer/SKILL.md      # 代码审查
-│   │   ├── ztl-coder-executor/SKILL.md      # 执行协调
-│   │   ├── ztl-coder-ledger-creator/SKILL.md # 账本创建
-│   │   ├── ztl-coder-project-initializer/SKILL.md # 项目初始化
-│   │   └── ztl-coder-artifact-searcher/SKILL.md # 工件搜索
-│   ├── hooks/
-│   │   └── hooks.json                  # 会话钩子配置
-│   ├── plugin.json                     # 插件配置
-│   └── marketplace.json                # Marketplace 配置
-├── thoughts/                           # 工件存储（运行时创建）
-│   ├── ledgers/                        # 会话账本
-│   └── shared/
-│       ├── designs/                    # 设计文档
-│       └── plans/                      # 实现计划
-├── package.json                        # NPM 配置
-└── README.md                           # 本文档
-```
+退出计划模式时，会自动打开 Plannotator 可视化 UI，进行行内标注。
 
-## 使用示例
+### E2E 测试
 
-### 开始新项目
+使用 Playwright 进行浏览器自动化测试
+收集前后端错误（console、网络、JS 异常）
 
-```
-用户: /ztl-coder-init
-Claude: [使用 ztl-coder-project-initializer skill]
-        分析项目结构...
-        创建 ARCHITECTURE.md
-        创建 CODE_STYLE.md
-```
+### 文档管理
 
-### 复杂功能开发（带可视化审查）
-
-```
-用户: 我需要添加一个用户认证系统
-Claude: [使用 ztl-coder-brainstormer skill]
-        让我先了解需求...
-        [提问并探索代码库]
-        [创建设计文档]
-        [使用 ztl-coder-planner skill 创建计划]
-        [ExitPlanMode Hook 触发]
-        [Plannotator UI 打开，用户进行可视化标注]
-        [收到反馈后修订计划]
-        [使用 ztl-coder-implementer + ztl-coder-reviewer 执行]
-```
-
-### 可视化代码审查
-
-```
-用户: /ztl-coder-review
-Claude: [打开 Plannotator UI]
-        显示当前 git diff
-        用户进行行内标注
-        反馈发送给 Agent 进行处理
-```
-
-### 会话连续性
-
-```
-用户: /ztl-coder-ledger
-Claude: [使用 ztl-coder-ledger-creator skill]
-        创建 thoughts/ledgers/CONTINUITY_2026-03-19.md
-        记录当前进度和上下文
-```
+自动同步代码与文档
+归档过时设计文档
+清理临时文件
 
 ## 配置
 
@@ -222,21 +155,13 @@ Claude: [使用 ztl-coder-ledger-creator skill]
   },
   "features": {
     "mindmodelInjection": true,
-    "visualPlanReview": true
+    "visualPlanReview": true,
+    "e2eTesting": true,
+    "autoDocSync": true
   },
   "compactionThreshold": 0.5
 }
 ```
-
-## MCP 工具
-
-| 工具 | 描述 |
-|------|------|
-| `ztl_code_look_at` | 查看文件结构 |
-| `ztl_code_artifact_search` | 搜索工件 |
-| `ztl_code_ast_grep_search` | AST 代码搜索 |
-| `ztl_code_ast_grep_replace` | AST 代码替换 |
-| `ztl_code_pty_*` | PTY 会话管理 |
 
 ## 仓库
 

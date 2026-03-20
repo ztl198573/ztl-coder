@@ -129,7 +129,8 @@ export function createSearcher(): ASTSearcher {
           if (!ast) continue;
           const code = await Bun.file(file).text();
 
-          function searchNodes(node: typeof ast) {
+          function searchNodes(node: typeof ast | null) {
+            if (!node) return;
             if (results.length >= (opts.maxResults || 100)) return;
             const typeMatch =
               node.type === type ||

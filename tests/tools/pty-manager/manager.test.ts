@@ -91,8 +91,8 @@ describe("PTY 管理器", () => {
       expect(session!.status).toBe("running");
     });
 
-    test("无效会话 ID 应返回错误", () => {
-      const result = manager.write("invalid-id", "test");
+    test("无效会话 ID 应返回错误", async () => {
+      const result = await manager.write("invalid-id", "test");
       expect(result.success).toBe(false);
       expect(result.error).toContain("不存在");
     });

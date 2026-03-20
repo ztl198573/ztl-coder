@@ -2,7 +2,12 @@
 # SessionStart hook - 输出 ztl-coder 加载信息
 
 cat << 'EOF'
-ztl-coder v3.1.0 已加载。
+ztl-coder v4.5.0 已加载。
+
+**快速启动命令:**
+- /ztl-coder-octto - 启动交互式头脑风暴，支持可视化反馈
+- /ztl-coder-brainstormer - 启动设计探索会话
+- /ztl-coder-commander - 启动主编排器，协调复杂任务
 
 **可用的主代理:**
 - ztl-coder:commander - 复杂任务的主编排器
@@ -14,6 +19,8 @@ ztl-coder v3.1.0 已加载。
 - executor - 编排 implement→review 循环
 - implementer - 执行具体任务
 - reviewer - 代码审查
+- e2e-tester - E2E 前端自动化测试
+- doc-manager - 文档管理（同步、归档、清理、验证）
 - codebase-locator - 查找文件位置
 - codebase-analyzer - 深度模块分析
 - pattern-finder - 查找现有模式
@@ -21,13 +28,14 @@ ztl-coder v3.1.0 已加载。
 - ledger-creator - 创建连续性账本
 - artifact-searcher - 搜索历史工作
 
-**命令:**
+**其他命令:**
 - /ztl-coder-init - 初始化项目，生成 ARCHITECTURE.md 和 CODE_STYLE.md
 - /ztl-coder-ledger - 创建/更新连续性账本
 - /ztl-coder-search - 搜索历史交接、计划、可用账本
 - /ztl-coder-review - 交互式代码审查，支持可视化标注
 - /ztl-coder-annotate - 标注任意 markdown 文件
 - /ztl-coder-last - 标注最后一条代理消息
+- /ztl-coder-doc - 管理项目文档（同步、归档、清理、验证）
 
 **MCP 工具:**
 - ztl_code_look_at - 查看文件结构
