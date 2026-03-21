@@ -70,3 +70,40 @@ export {
   type WizardConfig,
   type WizardResult,
 } from "./wizard.ts";
+
+// Phase 3: 遥测和工作流
+export {
+  telemetryEventSchema,
+  telemetryConfigSchema,
+  trackEvent,
+  trackSkillUsage,
+  trackAgentUsage,
+  trackToolUsage,
+  trackSessionStart,
+  trackSessionEnd,
+  getTelemetryStats,
+  saveStats,
+  enableTelemetry,
+  disableTelemetry,
+  isTelemetryEnabled,
+  getAnonymousId,
+  clearTelemetryData,
+  generateTelemetryReport,
+  type TelemetryEvent,
+  type TelemetryConfig,
+} from "./telemetry.ts";
+export {
+  workflowStepSchema,
+  workflowStateSchema,
+  WorkflowPersistence,
+  workflowPersistence,
+  createWorkflow,
+  getWorkflow,
+  updateWorkflow,
+  getWorkflowProgress,
+  formatWorkflowStatus,
+  type WorkflowStep,
+  type WorkflowState,
+  type WorkflowStatus,
+  type StepStatus,
+} from "./workflow-persistence.ts";

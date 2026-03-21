@@ -9,8 +9,8 @@
   "plugins": [
     {
       "name": "ztl-coder",
-      "description": "Claude Code plugin with workflow automation, enhanced UX, structured logging, and interactive wizards",
-      "version": "4.4.0",
+      "description": "Claude Code plugin with Agent→Subagent→MCP Tool architecture, full workflow automation, and rich tooling. Merged with gstack skills including CEO review, design review, investigation, shipping, QA reporting, and browser automation.",
+      "version": "6.0.0",
       "author": {
         "name": "ztl"
       },

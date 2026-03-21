@@ -56,6 +56,6 @@ export const EXTRACTABLE_EXTENSIONS = [
 /** 插件元数据 */
 export const PLUGIN_META = {
   name: "ztl-coder",
-  version: "2.0.0",
-  description: "Claude Code plugin with Brainstorm-Plan-Implement-Review workflow",
+  version: "1.0.0",
+  description: "Enterprise-grade Claude Code plugin for complete software development lifecycle automation",
 } as const;

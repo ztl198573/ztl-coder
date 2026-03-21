@@ -2,41 +2,115 @@
   "agents": {
     "ztl-coder-commander": {
       "model": "sonnet",
-      "permissionMode": "default"
+      "permissionMode": "default",
+      "maxTurns": 100
     },
     "ztl-coder-brainstormer": {
       "model": "sonnet",
-      "temperature": 0.8
+      "temperature": 0.8,
+      "maxTurns": 50
     },
     "ztl-coder-octto": {
       "model": "sonnet",
-      "permissionMode": "default"
+      "permissionMode": "default",
+      "maxTurns": 80
     }
   },
   "subagents": {
     "planner": {
       "model": "inherit",
-      "maxTurns": 20
+      "maxTurns": 20,
+      "permissionMode": "plan"
     },
     "executor": {
       "model": "inherit",
-      "maxTurns": 50
+      "maxTurns": 100,
+      "permissionMode": "default"
     },
     "implementer": {
       "model": "inherit",
-      "maxTurns": 30
+      "maxTurns": 30,
+      "permissionMode": "default"
     },
     "reviewer": {
       "model": "inherit",
+      "maxTurns": 15,
+      "permissionMode": "default"
+    },
+    "codebase-locator": {
+      "model": "inherit",
+      "maxTurns": 10
+    },
+    "codebase-analyzer": {
+      "model": "inherit",
+      "maxTurns": 20
+    },
+    "pattern-finder": {
+      "model": "inherit",
+      "maxTurns": 10
+    },
+    "project-initializer": {
+      "model": "inherit",
       "maxTurns": 15
+    },
+    "ledger-creator": {
+      "model": "inherit",
+      "maxTurns": 10
+    },
+    "artifact-searcher": {
+      "model": "inherit",
+      "maxTurns": 10
+    },
+    "doc-manager": {
+      "model": "inherit",
+      "maxTurns": 50
+    },
+    "e2e-tester": {
+      "model": "inherit",
+      "maxTurns": 80
+    },
+    "investigator": {
+      "model": "inherit",
+      "maxTurns": 30
+    },
+    "shipper": {
+      "model": "inherit",
+      "maxTurns": 50
+    },
+    "qa-reporter": {
+      "model": "inherit",
+      "maxTurns": 50
+    },
+    "ceo-reviewer": {
+      "model": "inherit",
+      "maxTurns": 30
+    },
+    "design-reviewer": {
+      "model": "inherit",
+      "maxTurns": 30
     }
   },
   "features": {
     "thinkMode": true,
     "ledgerAutoLoad": true,
     "autoCompact": true,
-    "artifactAutoIndex": true
+    "artifactAutoIndex": true,
+    "parallelSubagents": true,
+    "guardMode": false,
+    "browseSession": true
   },
   "compactionThreshold": 0.7,
-  "maxParallelSubagents": 10
+  "maxParallelSubagents": 10,
+  "tools": {
+    "freeze": {
+      "enabled": true,
+      "defaultLevel": "moderate"
+    },
+    "browse": {
+      "enabled": true,
+      "headless": true,
+      "timeout": 30000,
+      "sessionDir": ".browse/sessions"
+    }
+  }
 }

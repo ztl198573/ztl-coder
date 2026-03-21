@@ -1,7 +1,7 @@
 {
   "name": "ztl-coder",
-  "version": "2.0.0",
-  "description": "Claude Code plugin with Brainstorm-Plan-Implement-Review workflow and MCP tools",
+  "version": "1.0.0",
+  "description": "Enterprise-grade Claude Code plugin with Agent→Subagent→MCP Tool architecture. Complete software development lifecycle automation: brainstorming, planning, TDD implementation, testing, debugging, review, and deployment.",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -18,14 +18,15 @@
   "author": "ztl",
   "license": "MIT",
   "scripts": {
-    "build": "bun build src/index.ts --outdir dist --target node",
-    "build:watch": "bun build src/index.ts --outdir dist --target node --watch",
+    "build": "bun build src/index.ts --outdir dist --target node --external playwright --external playwright-core",
+    "build:watch": "bun build src/index.ts --outdir dist --target node --external playwright --external playwright-core --watch",
     "dev": "bun run --watch src/index.ts",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf dist"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
+    "playwright": "^1.58.2",
     "zod": "^3.23.0"
   },
   "devDependencies": {

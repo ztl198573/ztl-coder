@@ -1,25 +1,26 @@
 {
   "name": "ztl-coder",
-  "version": "4.5.0",
-  "description": "Claude Code plugin with workflow automation, enhanced UX, structured logging, and interactive wizards",
+  "version": "1.0.0",
+  "description": "Enterprise-grade Claude Code plugin with Agent→Subagent→MCP Tool architecture. Complete software development lifecycle automation: brainstorming, planning, TDD implementation, testing, debugging, review, and deployment.",
   "author": {
     "name": "ztl"
   },
   "license": "MIT",
   "keywords": [
+    "claude-code",
+    "plugin",
     "workflow",
-    "brainstorm",
-    "plan",
-    "implement",
-    "review",
-    "mcp",
-    "hooks",
+    "automation",
+    "tdd",
+    "testing",
+    "debugging",
+    "code-review",
+    "brainstorming",
+    "planning",
     "agents",
-    "pty",
-    "ast",
-    "plannotator",
-    "visual-review",
-    "annotations"
+    "subagents",
+    "mcp",
+    "enterprise"
   ],
   "commands": "./commands"
 }
